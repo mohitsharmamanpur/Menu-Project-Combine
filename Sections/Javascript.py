@@ -1,17 +1,19 @@
 import streamlit as st
 import requests
+import streamlit.components.v1 as components
 
 def javascript_tasks_section(task):
     st.header("🧪 JavaScript-Based Automation Tasks")
+
     if task == "Take Photo":
-        st.markdown("""
-        <h4>📸 Capture Photo from Webcam</h4>
+        st.subheader("📸 Capture Photo from Webcam")
+        components.html("""
         <video id="video" width="300" height="200" autoplay></video><br>
         <button onclick="takePhoto()">Take Photo</button><br><br>
         <canvas id="canvas" width="300" height="200"></canvas>
         <script>
         var video = document.getElementById('video');
-        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
             video.srcObject = stream;
         });
         function takePhoto() {
@@ -20,12 +22,14 @@ def javascript_tasks_section(task):
             context.drawImage(video, 0, 0, 300, 200);
         }
         </script>
-        """, unsafe_allow_html=True)
+        """, height=400)
 
     elif task == "Send Email via JS":
-        st.markdown("""
-        <h4>📤 Send Email Using EmailJS</h4>
+        st.subheader("📤 Send Email Using EmailJS")
+        st.info("Requires EmailJS credentials. Not supported natively in Streamlit.")
+        components.html("""
         <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+        <button onclick="sendEmail()">Send Email</button>
         <script>
         function sendEmail() {
             emailjs.init("YOUR_USER_ID");
@@ -33,22 +37,22 @@ def javascript_tasks_section(task):
                 to_name: "User",
                 from_name: "Website",
                 message: "Hello from JavaScript"
-            }).then(response => {
-                alert("Email sent successfully!");
-            }, error => {
-                alert("Failed to send: " + JSON.stringify(error));
+            }).then(function(response) {
+                alert("Email sent!");
+            }, function(error) {
+                alert("Failed: " + JSON.stringify(error));
             });
         }
         </script>
-        <button onclick="sendEmail()">Send Email</button>
-        """, unsafe_allow_html=True)
+        """, height=150)
 
     elif task == "Send Captured Photo via Email":
-        st.markdown("🚧 *Use backend + EmailJS or upload captured image via API (under development)*")
+        st.subheader("🚧 Send Captured Photo via Email")
+        st.warning("This feature requires custom backend + EmailJS + file upload (not supported in-browser alone).")
 
     elif task == "Record Video and Send via Email":
-        st.markdown("""
-        <h4>🎥 Record Video</h4>
+        st.subheader("🎥 Record Video from Webcam")
+        components.html("""
         <video id="recVid" autoplay muted></video><br>
         <button onclick="startRecording()">Start</button>
         <button onclick="stopRecording()">Stop</button>
@@ -61,7 +65,7 @@ def javascript_tasks_section(task):
             mediaRecorder.ondataavailable = e => chunks.push(e.data);
             mediaRecorder.onstop = () => {
                 let blob = new Blob(chunks, { type: 'video/webm' });
-                alert("Recording done. Now send this via backend.");
+                alert("Recording done. Send video via backend.");
             };
             mediaRecorder.start();
         }
@@ -70,11 +74,11 @@ def javascript_tasks_section(task):
             stream.getTracks().forEach(track => track.stop());
         }
         </script>
-        """, unsafe_allow_html=True)
+        """, height=350)
 
     elif task == "Send WhatsApp Message":
-        st.markdown("""
-        <h4>📲 Send WhatsApp Message</h4>
+        st.subheader("📲 Send WhatsApp Message")
+        components.html("""
         <input type="text" id="w_phone" placeholder="+91XXXXXXXXXX">
         <input type="text" id="w_msg" placeholder="Your message"><br><br>
         <button onclick="sendWAMsg()">Send via WhatsApp</button>
@@ -86,17 +90,15 @@ def javascript_tasks_section(task):
             window.open(url, "_blank");
         }
         </script>
-        """, unsafe_allow_html=True)
+        """, height=150)
 
     elif task == "Send SMS via JS":
-        st.markdown("""
-        <h4>📩 Send SMS (Requires Backend API like Twilio)</h4>
-        <p>Use JavaScript `fetch()` to call a server-side API.</p>
-        """)
+        st.subheader("📩 Send SMS via JS")
+        st.warning("Requires a backend API like Twilio or FastAPI. Use fetch() in JavaScript to call server.")
 
     elif task == "Show Current Location":
-        st.markdown("""
-        <h4>📍 Your Geo Location</h4>
+        st.subheader("📍 Your Geo Location")
+        components.html("""
         <button onclick="getLocation()">Get My Location</button>
         <p id="geo"></p>
         <script>
@@ -107,45 +109,61 @@ def javascript_tasks_section(task):
             });
         }
         </script>
-        """, unsafe_allow_html=True)
+        """, height=200)
 
     elif task == "Google Maps Live View":
-        st.markdown("""
-        <h4>🗺️ Google Maps (India)</h4>
+        st.subheader("🗺️ Google Maps (India)")
+        components.html("""
         <iframe src="https://www.google.com/maps?q=India&output=embed" width="100%" height="300"></iframe>
-        """, unsafe_allow_html=True)
+        """, height=300)
 
     elif task == "Route from My Location to Destination":
-        st.markdown("""
-        <h4>🚗 Show Route on Google Maps</h4>
-        <p>Example: Plot route from current location to Jaipur</p>
+        st.subheader("🚗 Route to Jaipur from Current Location")
+        components.html("""
         <iframe
         src="https://www.google.com/maps/dir/?api=1&origin=Current+Location&destination=Jaipur"
         width="100%" height="300"></iframe>
-        """, unsafe_allow_html=True)
+        """, height=300)
 
     elif task == "Nearby Grocery Stores":
-        st.markdown("""
-        <h4>🛒 Grocery Stores Near Me</h4>
-        <iframe src="https://www.google.com/maps/search/grocery+stores+near+me" width="100%" height="300"></iframe>
-        """, unsafe_allow_html=True)
+        st.subheader("🛒 Grocery Stores Near Me")
+        try:
+            ip_info = requests.get("https://ipinfo.io").json()
+            loc = ip_info.get("loc")  # Format: "latitude,longitude"
+            if loc:
+                latitude, longitude = loc.split(",")
+                map_url = f"https://www.google.com/maps/search/grocery+stores/@{latitude},{longitude},15z"
+                components.html(f"""
+                <iframe src="{map_url}" width="100%" height="300"></iframe>
+                """, height=300)
+            else:
+                st.error("Could not fetch location.")
+        except Exception as e:
+            st.error(f"Failed to load map: {e}")
 
     elif task == "Fetch Last Gmail Email Info":
-        st.markdown("📬 *Gmail API access requires OAuth – backend & scopes setup needed.*")
+        st.subheader("📬 Fetch Gmail Info")
+        st.warning("Gmail API requires OAuth2 scopes and backend support.")
 
     elif task == "Post to Social Media":
+        st.subheader("📣 Post to Social Media")
         st.markdown("""
-        <h4>📣 Social Media Posting (Basic)</h4>
-        <p>Use browser APIs or automation tools to pre-fill post data.</p>
-        <p>Try <a href="https://twitter.com/intent/tweet?text=Hello%20World" target="_blank">Post Tweet</a></p>
+        - [🕊️ Post a Tweet](https://twitter.com/intent/tweet?text=Hello%20World)  
+        - [📘 Post to Facebook](https://facebook.com)  
+        - [📸 Post to Instagram](https://instagram.com)
         """)
 
     elif task == "Track Most Viewed Products":
-        st.markdown("📈 Most viewed products will be tracked using frontend cookies/localStorage and displayed.")
+        st.subheader("📈 Track Most Viewed Products")
+        st.info("This can be done using cookies or localStorage via frontend JS. Streamlit cannot handle it directly.")
 
     elif task == "Get IP and Location":
+        st.subheader("🌐 Your IP & Location Info")
         if st.button("Get My IP"):
-            ip_data = requests.get("https://ipinfo.io").json()
-            ip = ip_data.get("ip", "Unknown")
-            loc = ip_data.get("city", "") + ", " + ip_data.get("region", "") + ", " + ip_data.get("country", "")
-            st.success(f"Your current IP address is {ip} and your location is {loc}.")
+            try:
+                ip_data = requests.get("https://ipinfo.io").json()
+                ip = ip_data.get("ip", "Unknown")
+                loc = f"{ip_data.get('city', '')}, {ip_data.get('region', '')}, {ip_data.get('country', '')}"
+                st.success(f"IP Address: {ip}\nLocation: {loc}")
+            except:
+                st.error("Unable to fetch IP information. Try again later.")
