@@ -5,6 +5,18 @@ import smtplib
 from twilio.rest import Client
 import tweepy
 
+# --- Add background image and overlay CSS for UI/UX consistency ---
+st.markdown("""
+<style>
+body, .stApp {
+    background-image: linear-gradient(rgba(30,30,30,0.85), rgba(30,30,30,0.85)), url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+</style>
+""", unsafe_allow_html=True)
+
 def python_automation_section(sub_choice=None):
     st.header(" Python Automation")
 

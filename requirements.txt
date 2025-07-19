@@ -1,0 +1,45 @@
+streamlit>=1.28.0
+pandas>=2.0.0
+numpy>=1.24.0
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# Python Automation
+pywhatkit>=5.4
+twilio>=8.1.0
+tweepy>=4.14.0
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+Pillow>=10.0.0
+psutil>=5.9.0
+
+# DevOps & Cloud
+boto3>=1.28.0
+docker>=6.1.0
+kubernetes>=28.1.0
+jenkins>=0.7.0
+
+# AI/ML
+openai>=1.3.0
+google-generativeai>=0.3.0
+langchain>=0.0.300
+langchain-openai>=0.0.2
+
+# Database
+pymongo>=4.5.0
+psycopg2-binary>=2.9.7
+sqlalchemy>=2.0.0
+
+# Web Development
+flask>=2.3.0
+fastapi>=0.104.0
+uvicorn>=0.24.0
+
+# Additional Utilities
+python-dotenv>=1.0.0
+streamlit-option-menu>=0.3.6
+streamlit-chat>=0.1.1
+streamlit-ace>=0.1.1
+streamlit-aggrid>=0.3.4 
