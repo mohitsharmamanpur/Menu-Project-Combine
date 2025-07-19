@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Automation Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: #1f77b4;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+        }
+        
+        .feature-card li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-card li:before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .metric-card h4 {
+            color: #1f77b4;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        
+        .metric-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .deployment-info {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .deployment-info h2 {
+            color: #1f77b4;
+            margin-bottom: 20px;
+        }
+        
+        .deployment-info p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Universal Automation Platform</h1>
+            <p>Your comprehensive automation solution</p>
+        </div>
+        
+        <div class="metrics">
+            <div class="metric-card">
+                <h4>50+</h4>
+                <p>Total Tasks</p>
+            </div>
+            <div class="metric-card">
+                <h4>5+</h4>
+                <p>AI Models</p>
+            </div>
+            <div class="metric-card">
+                <h4>4+</h4>
+                <p>Cloud Services</p>
+            </div>
+            <div class="metric-card">
+                <h4>3+</h4>
+                <p>DevOps Tools</p>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>🧠 Machine Learning</h3>
+                <ul>
+                    <li>Upload and analyze datasets</li>
+                    <li>Train ML models (SVM, Random Forest)</li>
+                    <li>Visualize results with charts</li>
+                    <li>Make predictions from user input</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>⚙️ DevOps Automation</h3>
+                <ul>
+                    <li>Docker container management</li>
+                    <li>Jenkins job automation</li>
+                    <li>Kubernetes deployment</li>
+                    <li>CI/CD pipeline control</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🤖 Agentic AI</h3>
+                <ul>
+                    <li>OpenAI/Gemini integration</li>
+                    <li>Chat with AI agents</li>
+                    <li>Document Q&A system</li>
+                    <li>Context-aware conversations</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>☁️ Cloud Services</h3>
+                <ul>
+                    <li>AWS EC2 instance management</li>
+                    <li>S3 file operations</li>
+                    <li>EBS volume management</li>
+                    <li>Security group configuration</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>🌐 Full-Stack Development</h3>
+                <ul>
+                    <li>React/Node.js integration</li>
+                    <li>Database operations</li>
+                    <li>API development</li>
+                    <li>Web automation tasks</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <h3>📱 JavaScript Tasks</h3>
+                <ul>
+                    <li>Camera and media capture</li>
+                    <li>Location services</li>
+                    <li>Social media integration</li>
+                    <li>Browser automation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="deployment-info">
+            <h2>📋 Deployment Information</h2>
+            
+            <div class="warning">
+                <strong>⚠️ Important Note:</strong> This is a static version of your Streamlit application. The interactive features are not available in this static deployment.
+            </div>
+            
+            <div class="success">
+                <strong>✅ Successfully Deployed:</strong> Your Universal Automation Platform is now live on Netlify!
+            </div>
+            
+            <h3>🚀 Next Steps for Full Functionality:</h3>
+            <p>To access the full interactive features of your application, consider deploying to:</p>
+            <ul>
+                <li><strong>Streamlit Cloud:</strong> Free hosting for Streamlit applications</li>
+                <li><strong>Heroku:</strong> Platform-as-a-Service with Python support</li>
+                <li><strong>Railway:</strong> Modern deployment platform</li>
+                <li><strong>Render:</strong> Cloud application platform</li>
+            </ul>
+            
+            <h3>🔧 Configuration Files Created:</h3>
+            <ul>
+                <li><code>.streamlit/config.toml</code> - Streamlit configuration</li>
+                <li><code>packages.txt</code> - System dependencies</li>
+                <li><code>setup.sh</code> - Deployment setup script</li>
+                <li><code>requirements.txt</code> - Python dependencies</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html> 

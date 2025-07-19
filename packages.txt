@@ -1,0 +1,4 @@
+# System packages required for deployment
+build-essential
+python3-dev
+libpq-dev 
